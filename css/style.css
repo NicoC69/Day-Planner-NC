@@ -54,6 +54,7 @@ button {
 
 
 select {
+    width: 50%;
     size: 100%;
     padding: 10px;
     border: 1px solid #ddd;

@@ -13,12 +13,15 @@
     
     <div class="content">
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">    
+            
             <h1>Day Planner/Planificador del dia</h1>
-            <br><hr>
+                <br><hr>
+            
             <div>
                 <input type="text" id="ciudadInput" placeholder="City / Ciudad">
                 <button class="btn btn-primary" onclick="obtenerClima()">Show / Ver</button>
             </div>
+            
             <div>
                 
                 <h4>Temp: <span id="temperatura"></span></h4>
@@ -30,23 +33,22 @@
             <h2>To Do list / Lista de pendientes</h2>
     
                 <input type="text" id="listName" placeholder="List Name / Nombre de la lista">
-            
+                <button class="btn btn-primary" onclick="newTodoList()">New / Nueva</button>
+
                 <input type="text" id="todoInput" placeholder="Item">
-            
                 <button class="btn btn-primary" onclick="addTodo()">Add / Agregar</button>
             <br>    
                 <button class="btn btn-primary" onclick="saveTodoList()">Save / Guardar</button>
-                <button class="btn btn-primary" onclick="newTodoList()">New / Nueva</button>
         </div>
     
-    <br>
+    <br><hr>
     
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
             <h2>Saved Lists / Listas guardadas</h2>
     
-                <select class="form-select" size="3" aria-label="Size 3 select example" id="savedTodoLists"></select>
+                <select size="4" aria-label="Size 3 select example" id="savedTodoLists"></select>
                 
-                <br>
+                <br><br>
     
                 <button class="btn btn-primary" onclick="loadSelectedTodoList()">Open / Abrir</button>
                 <button class="btn btn-primary" onclick="updateCurrentTodoList()">Update / Actualizar</button>
