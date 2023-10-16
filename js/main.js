@@ -212,37 +212,40 @@ function printSelectedTodoList() {
 
 //-------------- Clima
 
+const apiKey = "cc1d550f7c87723a9aab4748c6d51f20";
 
-const btn = document.querySelector('#btn')
+function obtenerClima() {
+    const ciudad = document.getElementById("ciudadInput").value;
 
-    btn.addEventListener('click', () => {
-        const key = "cc1d550f7c87723a9aab4748c6d51f20"
-        let ciudad = document.querySelector('#ciudad').value
-        ciudad = encodeURIComponent(ciudad)
+    if (!ciudad) {
+        alert("Por favor ingresa una ciudad.");
+        return;
+    }
 
-        if (ciudad != "") {
-            let url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${key}`
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric&lang=es`;
 
-            fetch(url)
-                .then((res) => {
-                    return res.json()
-                })
-                .then((clima) => {
-                    console.log(clima.main)
-                    let temp = clima.main.temp
-                    let tempC = temp - 273.13
-                    let html = document.querySelector('#temperatura')
-                    html.innerHTML = tempC.toFixed(0)
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al obtener el clima");
+            }
+            return response.json();
+        })
+        .then(data => {
+            const tempCelsius = Math.round(data.main.temp);
+            const tempFahrenheit = Math.round((tempCelsius * 9/5) + 32);
+            document.getElementById("temperatura").textContent = `${tempCelsius}°C / ${tempFahrenheit}°F`;
 
-                    if (tempC < 15) {
-                        html.className = 'cold'
-                    } else {
-                        html.classList = 'warm'
-                    }
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
-    })  
-
+            const iconCode = data.weather[0].icon;
+            if (iconCode) {
+            const iconUrl = `http://openweathermap.org/img/w/${iconCode}.png`;
+            const iconElement = document.getElementById("iconoClima");
+            iconElement.src = iconUrl;
+            iconElement.style.display = "block";
+            }        
+        })
+        .catch(error => {
+            console.log("Error:", error);
+            alert("No se pudo obtener el clima para esa ciudad. Asegúrate de haberla escrito correctamente.");
+        });
+}
