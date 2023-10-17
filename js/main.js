@@ -35,7 +35,10 @@ function saveTodoList() {
         });
     });
 
-    const listName = document.getElementById('listName').value.trim();
+    const selectedDate = document.getElementById('datepicker').value;
+    const listNameBase = document.getElementById('listName').value.trim();
+    const listName = selectedDate ? `${listNameBase} - ${selectedDate}` : listNameBase; // Si hay una fecha seleccionada, la añadimos al nombre
+
     if (!listName) {
         alert("Please, choose a name for the list before save / Por favor, ingrese un nombre para la lista antes de guardar.");
         return;
@@ -51,7 +54,6 @@ function saveTodoList() {
     localStorage.setItem('todoLists', JSON.stringify(savedLists));
     updateSavedTodoListsDropdown();
 }
-
 
 
 function newTodoList() {
@@ -136,7 +138,7 @@ function updateCurrentTodoList() {
     const savedLists = getSavedTodoLists();
     const currentList = savedLists[currentListTimestamp];
     if (!currentList) {
-        alert("Error: We couldnt find the list. Try again / No se encontró la lista actual. Intente cargarla nuevamente.");
+        alert("Error: We couldnt find the list. Try again/No se encontró la lista actual. Intente cargarla nuevamente.");
         return;
     }
 
@@ -151,7 +153,7 @@ function updateCurrentTodoList() {
 
     const listName = document.getElementById('listName').value.trim();
     if (!listName) {
-        alert("Please, choose a name before save / Por favor, ingrese un nombre para la lista antes de guardar.");
+        alert("Please, choose a name before save/Por favor, ingrese un nombre para la lista antes de guardar.");
         return;
     }
 
@@ -167,7 +169,7 @@ window.onload = function() {
     updateSavedTodoListsDropdown();
 };
 
-//--- Opcion imprimir la lista
+//---   imprimir la lista
 
 function printSelectedTodoList() {
     const selectedTimestamp = document.getElementById('savedTodoLists').value;
@@ -218,7 +220,7 @@ function obtenerClima() {
     const ciudad = document.getElementById("ciudadInput").value;
 
     if (!ciudad) {
-        alert("Por favor ingresa una ciudad.");
+        alert("Por favor ingresa una ciudad/Please choose a city.");
         return;
     }
 
@@ -227,7 +229,7 @@ function obtenerClima() {
     fetch(apiUrl)
         .then(response => {
             if (!response.ok) {
-                throw new Error("Error al obtener el clima");
+                throw new Error("Error");
             }
             return response.json();
         })
@@ -246,6 +248,17 @@ function obtenerClima() {
         })
         .catch(error => {
             console.log("Error:", error);
-            alert("No se pudo obtener el clima para esa ciudad. Asegúrate de haberla escrito correctamente.");
+            alert("Algo salio mal, por favor intente de nuevo. Somthing went wrong, please try again.");
         });
 }
+
+// ----- Calendario
+
+/* var picker = new Pikaday({
+    field: document.getElementById('datepicker') 
+}); */
+
+var picker = new Pikaday({
+    field: document.getElementById('datepicker'),
+    format: 'DD/MM/YYYY'
+});
