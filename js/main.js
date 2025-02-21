@@ -1,35 +1,3 @@
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-            console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(error => {
-            console.log('Service Worker registration failed:', error);
-        });
-    });
-}
-
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    deferredPrompt = event;
-
-    const installButton = document.getElementById('installBtn');
-    installButton.style.display = 'block';
-
-    installButton.addEventListener('click', () => {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then(choice => {
-            if (choice.outcome === 'accepted') {
-                console.log('User installed the app');
-            }
-            deferredPrompt = null;
-        });
-    });
-});
-
 document.getElementById('todoInput').addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
         addTodo();
@@ -363,7 +331,15 @@ function obtenerClima() {
     field: document.getElementById('datepicker') 
 }); */
 
-var picker = new Pikaday({
+/* var picker = new Pikaday({
     field: document.getElementById('datepicker'),
     format: 'DD/MM/YYYY'
+}); */
+
+new Pikaday({
+    field: document.getElementById("datepicker"),
+    format: "MM/DD/YYYY", // Ensure this matches what you want
+    onSelect: function (date) {
+        document.getElementById("datepicker").value = this.getMoment().format("MM/DD/YYYY");
+    }
 });

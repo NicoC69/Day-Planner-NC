@@ -9,67 +9,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="js/pikaday.js"></script>
     <link rel="stylesheet" href="css/pikaday.css">
-    <style>
-        /* Ensures button and input heights match */
-        .form-control, .btn {
-            height: 40px;
-        }
-        .btn {
-            min-width: 120px; /* Prevents buttons from shrinking too much */
-        }
-        /* Keep stacked layout on small screens but inline on large screens */
-        .responsive-group {
-            display: flex;
-            flex-direction: column;
-        }
-        @media (min-width: 768px) {
-            .responsive-group {
-                flex-direction: row;
-                gap: 10px;
-            }
-        }
-    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
     <div class="container py-4">
-
         <h1 class="text-center display-4">Day Planner</h1>
-        <hr>
-        <button id="myButton">Click Me</button>
-        <script>
-            let deferredPrompt;
-          
-            window.addEventListener("beforeinstallprompt", (event) => {
-                event.preventDefault();
-                deferredPrompt = event; 
-                document.getElementById("installButton").style.display = "block";
-            });
-          
-            document.getElementById("installButton").addEventListener("click", () => {
-                if (deferredPrompt) {
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then((choiceResult) => {
-                        if (choiceResult.outcome === "accepted") {
-                            console.log("User accepted the install prompt");
-                        } else {
-                            console.log("User dismissed the install prompt");
-                        }
-                        deferredPrompt = null;
-                    });
-                }
-            });
-          </script>
-        
-
+        <hr>       
         <!-- Weather Section -->
         <div class="mb-4 text-center">
             <div class="responsive-group">
-                <input type="text" id="ciudadInput" class="form-control mb-2" placeholder="City / Ciudad">
-                <button class="btn btn-light mb-2" onclick="obtenerClima()">Show Weather</button>
+                <input type="text" id="ciudadInput" class="form-control mb-2" placeholder="City">
             </div>
+                <button class="btn btn-light mb-2" onclick="obtenerClima()">Show Weather</button>
             <div id="weatherInfo">
                 <p id="temperatura"></p>
                 <p id="descripcion"></p>
@@ -78,12 +30,9 @@
                 <img id="iconoClima" style="display: none;" alt="Weather Icon" width="50" height="50">
             </div>
         </div>
-
         <hr>
 
         <!-- To-Do List Section -->
-        
-
         <h2 class="text-center">To-Do List</h2>
 
         <div class="mb-3">
@@ -93,24 +42,22 @@
                 <input type="text" id="datepicker" class="form-control mb-2" placeholder="Date">
                 <input type="text" id="listName" class="form-control mb-2" placeholder="List Name">
                 <input type="text" id="todoInput" class="form-control mb-2" placeholder="Item">
-                <button class="btn btn-primary mb-2" onclick="addTodo()">Add</button>
             </div>
-
+                <button class="btn btn-primary mb-2" onclick="addTodo()">Add</button>
+            <hr>
+            
             <ul id="todoList" class="list-group mt-3"></ul>
-
-
-            <button class="btn btn-success w-100" onclick="saveTodoList()">Save</button>
+                <button class="btn btn-success w-100" onclick="saveTodoList()">Save</button>
             <br><br>
             <button class="btn btn-primary" onclick="updateCurrentTodoList()">Update</button>
         </div>
 
         <hr>
-
         <!-- Saved Lists Section -->
         <h2 class="text-center">Saved Lists</h2>
 
         <div class="mb-3">
-            <select size="4" id="savedTodoLists" class="form-control" style="min-height: 150px; overflow-y: auto;"></select>
+            <select size="4" id="savedTodoLists" class="form-control"></select>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
@@ -118,6 +65,7 @@
             <button class="btn btn-danger" onclick="deleteSelectedTodoList()">Delete</button>
         </div>
 
+            <hr>
 
         <button class="btn btn-warning w-100 mt-3" onclick="printSelectedTodoList()">Print Selected</button>
     </div>

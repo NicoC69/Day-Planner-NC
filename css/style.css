@@ -8,29 +8,6 @@ body {
     padding: 10px;
 }
 
-#myButton {
-    background: linear-gradient(135deg, #3498db, #8e44ad); /* Nice gradient */
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-}
-
-#myButton:hover {
-    background: linear-gradient(135deg, #2980b9, #6a1b9a);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-#myButton:active {
-    transform: scale(0.95);
-}
 
 body {
     animation: fadeIn 0.6s ease-in-out;
@@ -80,8 +57,8 @@ input[type="text"], select {
     border-radius: 8px;
     font-size: 1.1rem;
     width: 100%;
-    max-width: 400px;
-    display: block;
+    max-width: 1000px;
+    display: flex;
     margin: 10px auto;
     border: 1px solid #ccc;
 }
@@ -92,6 +69,7 @@ button {
     border-radius: 5px;
     display: block;
     width: 100%;
+    min-width: 120px;
     text-align: center;
     margin: 10px 0;
     cursor: pointer;
@@ -155,4 +133,63 @@ button:active {
         font-size: 1rem;
         padding: 12px;
     }
+}
+
+.form-control, .btn {
+    height: 45px; /* Ensures equal height */
+    font-size: 1rem;
+    padding: 10px;
+    box-sizing: border-box; /* Prevents padding from affecting width */
+    width: 100%; /* Make them the same width */
+}
+
+/* Keep buttons from shrinking too much */
+.btn {
+    min-width: 150px; /* Ensures they don’t become too small */
+}
+
+/* Align inputs and buttons properly */
+.responsive-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between elements */
+    align-items: stretch;
+}
+
+@media (min-width: 768px) {
+    .responsive-group {
+        flex-direction: row;
+    }
+}
+
+/* Make sure saved lists are fully visible */
+#savedTodoLists {
+    width: 100%;
+    height: 200px; /* Adjust height to show more saved lists */
+    overflow-y: auto; /* Enable scrolling if necessary */
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Weather Info Container */
+#weatherInfo {
+    display: flex;
+    flex-direction: column; /* Stack elements by default */
+    align-items: center; /* Center items horizontally */
+    text-align: center; /* Ensure text is centered */
+    gap: 5px; /* Adds spacing between elements */
+}
+
+/* Weather Icon Styling */
+#iconoClima {
+    display: none;
+    width: 50px;
+    height: 50px;
+}
+
+#datepicker {
+    text-transform: none; /* Prevents unwanted uppercase formatting */
+    text-align: left; /* Ensures proper text alignment */
+    font-size: 1rem; /* Adjust to match other inputs */
 }
