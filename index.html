@@ -43,8 +43,13 @@
                 <input type="text" id="ciudadInput" class="form-control mb-2" placeholder="City / Ciudad">
                 <button class="btn btn-light mb-2" onclick="obtenerClima()">Show Weather</button>
             </div>
-            <h4 class="mt-3">Temp: <span id="temperatura"></span></h4>
-            <img id="iconoClima" style="display: none;" alt="Weather Icon" width="50" height="50">
+            <div id="weatherInfo">
+                <p id="temperatura"></p>
+                <p id="descripcion"></p>
+                <p id="humedad"></p>
+                <p id="viento"></p>
+                <img id="iconoClima" style="display: none;" alt="Weather Icon" width="50" height="50">
+            </div>
         </div>
 
         <hr>
@@ -66,6 +71,8 @@
 
 
             <button class="btn btn-success w-100" onclick="saveTodoList()">Save</button>
+            <br><br>
+            <button class="btn btn-primary" onclick="updateCurrentTodoList()">Update</button>
         </div>
 
         <hr>
@@ -74,12 +81,11 @@
         <h2 class="text-center">Saved Lists</h2>
 
         <div class="mb-3">
-            <select size="4" id="savedTodoLists" class="form-control" style="max-height: 150px; overflow-y: auto;"></select>
+            <select size="4" id="savedTodoLists" class="form-control" style="min-height: 150px; overflow-y: auto;"></select>
         </div>
 
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
             <button class="btn btn-primary" onclick="loadSelectedTodoList()">Open</button>
-            <button class="btn btn-primary" onclick="updateCurrentTodoList()">Update</button>
             <button class="btn btn-danger" onclick="deleteSelectedTodoList()">Delete</button>
         </div>
 
