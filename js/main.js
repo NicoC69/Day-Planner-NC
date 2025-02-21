@@ -174,6 +174,65 @@ window.onload = function() {
 function printSelectedTodoList() {
     const selectedTimestamp = document.getElementById('savedTodoLists').value;
     if (!selectedTimestamp) {
+        alert("Please select a list to view.");
+        return;
+    }
+
+    const savedLists = getSavedTodoLists();
+    const selectedList = savedLists[selectedTimestamp];
+
+    if (!selectedList) {
+        alert("Error: Could not find the selected list.");
+        return;
+    }
+
+    // Open a blank page
+    let printWindow = window.open('', '_blank');
+
+    // Minimal HTML structure
+    let content = `<html>
+        <head>
+            <title>${selectedList.name}</title>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    text-align: center;
+                    margin: 40px;
+                }
+                h1 {
+                    font-size: 24px;
+                    margin-bottom: 20px;
+                }
+                ul {
+                    list-style-type: none;
+                    padding: 0;
+                }
+                li {
+                    font-size: 18px;
+                    margin: 8px 0;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>${selectedList.name}</h1>
+            <ul>`;
+
+    // Add list items
+    selectedList.items.forEach(item => {
+        content += `<li>${item.text}</li>`;
+    });
+
+    content += `</ul>
+        </body></html>`;
+
+    printWindow.document.write(content);
+    printWindow.document.close();
+}
+
+/*
+function printSelectedTodoList() {
+    const selectedTimestamp = document.getElementById('savedTodoLists').value;
+    if (!selectedTimestamp) {
         alert("Por favor, seleccione una lista para imprimir.");
         return;
     }
@@ -210,7 +269,20 @@ function printSelectedTodoList() {
     printWindow.document.write(content);
     printWindow.document.close();
     printWindow.print();
-}
+} 
+*/
+
+//-- Screenshot option
+/* function printSelectedTodoList() {
+    const todoSection = document.querySelector(".container"); // Capture the entire to-do list section
+
+    html2canvas(todoSection, { scale: 2 }).then(canvas => {
+        const link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png"); // Convert screenshot to image
+        link.download = "todo_list_screenshot.png"; // Set download filename
+        link.click(); // Trigger download
+    });
+} */
 
 //-------------- Clima
 
