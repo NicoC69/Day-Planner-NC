@@ -1,3 +1,35 @@
+$(document).ready(function () {
+    // Initialize Bootstrap Datepicker
+    $('#datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // To-Do List Functionality
+    $("#addTaskBtn").click(function () {
+        let taskText = $("#taskInput").val();
+        let taskDate = $("#datepicker input").val(); // Get selected date
+
+        if (taskText !== "") {
+            let taskItem = `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${taskText} <span class="badge bg-primary">${taskDate}</span>
+                    <button class="btn btn-danger btn-sm delete-task">X</button>
+                </li>
+            `;
+            $("#taskList").append(taskItem);
+            $("#taskInput").val(""); // Clear input field
+        }
+    });
+
+    // Delete Task
+    $(document).on("click", ".delete-task", function () {
+        $(this).parent().remove();
+    });
+});
+
+
 document.getElementById('todoInput').addEventListener('keyup', function(event) {
     if (event.key === 'Enter') {
         addTodo();

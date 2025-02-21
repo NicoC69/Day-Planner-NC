@@ -49,8 +49,7 @@ li[style*="line-through"] {
     opacity: 0.7;
     transition: background-color 0.3s, opacity 0.3s ease-in-out;
 }
-
-/* Input Fields */
+/*
 input[type="text"], select {
     padding: 14px;
     border-radius: 8px;
@@ -60,7 +59,7 @@ input[type="text"], select {
     display: flex;
     margin: 10px auto;
     border: 1px solid #ccc;
-}
+}*/
 
 /* Buttons */
 button {
