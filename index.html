@@ -10,6 +10,24 @@
     <script src="js/pikaday.js"></script>
     <link rel="stylesheet" href="css/pikaday.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        .form-control, .btn {
+            height: 40px;
+        }
+        .btn {
+            min-width: 120px; 
+        }
+        .responsive-group {
+            display: flex;
+            flex-direction: column;
+        }
+        @media (min-width: 768px) {
+            .responsive-group {
+                flex-direction: row;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -33,23 +51,23 @@
         <hr>
 
         <!-- To-Do List Section -->
-        <h2 class="text-center">To-Do List</h2>
+        <h2 class="text-center">Create a To-Do List</h2>
 
-        <div class="mb-3">
-            <button class="btn btn-primary mb-2" onclick="newTodoList()">New</button>
+        <div>
+            <button class="btn btn-primary mb-2" onclick="newTodoList()">New List</button>
 
             <div class="responsive-group">
                 <input type="text" id="datepicker" class="form-control mb-2" placeholder="Date">
                 <input type="text" id="listName" class="form-control mb-2" placeholder="List Name">
                 <input type="text" id="todoInput" class="form-control mb-2" placeholder="Item">
+                <button class="btn btn-primary mb-2" onclick="addTodo()">Add item</button>
             </div>
-                <button class="btn btn-primary mb-2" onclick="addTodo()">Add</button>
             <hr>
             
             <ul id="todoList" class="list-group mt-3"></ul>
                 <button class="btn btn-success w-100" onclick="saveTodoList()">Save</button>
             <br><br>
-            <button class="btn btn-primary" onclick="updateCurrentTodoList()">Update</button>
+                <button class="btn btn-primary" onclick="updateCurrentTodoList()">Update list</button>
         </div>
 
         <hr>

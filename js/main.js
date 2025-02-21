@@ -327,19 +327,8 @@ function obtenerClima() {
 
 // ----- Calendario
 
-/* var picker = new Pikaday({
-    field: document.getElementById('datepicker') 
-}); */
-
-/* var picker = new Pikaday({
+var picker = new Pikaday({
     field: document.getElementById('datepicker'),
     format: 'DD/MM/YYYY'
-}); */
-
-new Pikaday({
-    field: document.getElementById("datepicker"),
-    format: "MM/DD/YYYY", // Ensure this matches what you want
-    onSelect: function (date) {
-        document.getElementById("datepicker").value = this.getMoment().format("MM/DD/YYYY");
-    }
 });
+
