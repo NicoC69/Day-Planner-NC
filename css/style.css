@@ -8,6 +8,30 @@ body {
     padding: 10px;
 }
 
+#myButton {
+    background: linear-gradient(135deg, #3498db, #8e44ad); /* Nice gradient */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+}
+
+#myButton:hover {
+    background: linear-gradient(135deg, #2980b9, #6a1b9a);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+#myButton:active {
+    transform: scale(0.95);
+}
+
 body {
     animation: fadeIn 0.6s ease-in-out;
 }
